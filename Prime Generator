@@ -1,0 +1,41 @@
+/*
+  SPOJ Classical Problem
+  2. Prime Generator
+  Code: PRIME1
+  Using Sieve Algorithm
+*/
+#include<stdio.h>
+using namespace std;
+
+int main()
+{
+    long long n,m,i,j,lessNm;
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%lld %lld",&m,&n);
+        bool *prime=new bool[n-m+1];
+        for(i=2;i*i<=n;i++)
+        {
+            lessNm=m/i;
+            lessNm*=i;
+            for(j=lessNm;j<=n;j+=i)
+            {
+
+                if(j!=i && j>=m)
+                {
+                    prime[j-m]=true;
+                }
+            }
+        }
+        for(i=0;i<n-m+1;i++)
+        {
+            if(!prime[i] && i+m!=1)
+            printf("%lld\n",i+m);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
